@@ -1,5 +1,5 @@
 # PYSPARK
-![img1](https://www.filmsnewsfeed.com/images/article/will-billy-hargrove-return-in-stranger-things-season-4-main.webp)
+![img1](https://www.serieously.com/app/uploads/2019/07/j3_promo_stills_022519.0056_r_0.jpg)
 ## Load data from PostgreSQL in Spark
 
 ```py
