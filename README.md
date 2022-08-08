@@ -1,5 +1,5 @@
 # PYSPARK
-![img1](https://www.serieously.com/app/uploads/2019/07/j3_promo_stills_022519.0056_r_0.jpg)
+![img1](https://i.gaw.to/vehicles/photos/40/28/402841-2022-chevrolet-spark.jpg?640x400)
 ## Load data from PostgreSQL in Spark
 
 ```py
