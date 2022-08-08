@@ -25,7 +25,7 @@ df.show()
 
 Téléchargez le pilote JDBC PostgreSQL : https://jdbc.postgresql.org/download.html
 
-```
+```py
 from pyspark.sql import SparkSession
 
 spark = SparkSession \
