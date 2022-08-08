@@ -22,6 +22,7 @@ df = spark.createDataFrame(pdf)
 print(df.schema)
 df.show()
 ```
+#### Autre méthode 
 
 Téléchargez le pilote JDBC PostgreSQL : https://jdbc.postgresql.org/download.html
 
