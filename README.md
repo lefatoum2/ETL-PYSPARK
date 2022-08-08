@@ -44,3 +44,6 @@ Examine the tables in the catalog again
 ```
 print(spark.catalog.listTables())
 ```
+
+![image2](https://user-images.githubusercontent.com/73175706/183451095-e4a49937-0263-4366-9505-a1383ac6633e.png)
+
