@@ -22,9 +22,9 @@ df = spark.createDataFrame(pdf)
 print(df.schema)
 df.show()
 ```
-#### Autre méthode 
+#### Another way
 
-Téléchargez le pilote JDBC PostgreSQL : https://jdbc.postgresql.org/download.html
+Download the pilote JDBC PostgreSQL : https://jdbc.postgresql.org/download.html
 
 ```py
 from pyspark.sql import SparkSession
