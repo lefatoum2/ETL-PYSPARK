@@ -71,12 +71,12 @@ print(spark.catalog.listTables())
 
 ```
 # Don't change this file path
-file_path = "/usr/local/share/datasets/airports.csv"
+file_path = "/usr/local/share/datasets/players.csv"
 
 # Read in the airports data
-airports = spark.read.csv(file_path, header=True)
+players = spark.read.csv(file_path, header=True)
 
 # Show the data
-airports.show()
+players.show()
 ```
 
