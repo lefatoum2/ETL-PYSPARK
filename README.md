@@ -131,3 +131,13 @@ speed1 = flights.select("origin", "dest", "tailnum", avg_speed)
 # Create the same table using a SQL expression
 speed2 = flights.selectExpr("origin", "dest", "tailnum", "distance/(air_time/60) as avg_speed")
 ```
+
+### Filter GroupBy 
+
+```
+# Find the shortest flight from PDX in terms of distance
+flights.filter(flights.origin == "PDX").groupBy().min("distance").show()
+
+# Find the longest flight from SEA in terms of air time
+flights.filter(flights.origin == "SEA").groupBy().max("air_time").show()
+```
