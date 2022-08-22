@@ -204,3 +204,11 @@ model_data = model_data.withColumn("label", model_data.is_late.cast("integer"))
 model_data = model_data.filter("arr_delay is not NULL and dep_delay is not NULL and air_time is not NULL and plane_year is not NULL")
 
 ```
+
+```
+# Create a StringIndexer
+carr_indexer = StringIndexer(outputCol="carrier_index",inputCol="carrier")
+
+# Create a OneHotEncoder
+carr_encoder = OneHotEncoder(outputCol="carrier_fact",inputCol="carrier_index")
+```
