@@ -299,3 +299,15 @@ best_lr = lr.fit(training)
 # Print best_lr
 print(best_lr)
 ```
+
+### Evaluating binary classifiers(ROC)
+
+### Evaluate the model
+
+```
+# Use the model to predict the test set
+test_results = best_lr.transform(test)
+
+# Evaluate the predictions
+print(evaluator.evaluate(test_results))
+```
