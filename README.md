@@ -256,3 +256,46 @@ import pyspark.ml.evaluation as evals
 # Create a BinaryClassificationEvaluator
 evaluator = evals.BinaryClassificationEvaluator(metricName="areaUnderROC")
 ```
+
+### Make a grid
+
+```
+# Import the tuning submodule
+import pyspark.ml.tuning as tune
+
+# Create the parameter grid
+grid = tune.ParamGridBuilder()
+
+# Add the hyperparameter
+grid = grid.addGrid(lr.regParam, np.arange(0, .1, .01))
+grid = grid.addGrid(lr.elasticNetParam, [0, 1])
+
+# Build the grid
+grid = grid.build()
+```
+
+### Make the validator
+
+```
+# Create the CrossValidator
+cv = tune.CrossValidator(estimator=lr,
+               estimatorParamMaps=grid,
+               evaluator=evaluator
+               )
+```
+
+### Fit the model(s)
+
+```
+# Fit cross validation models
+models = cv.fit(training)
+
+# Extract the best model
+best_lr = models.bestModel
+
+# Call lr.fit()
+best_lr = lr.fit(training)
+
+# Print best_lr
+print(best_lr)
+```
