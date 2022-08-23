@@ -226,3 +226,33 @@ dest_encoder = OneHotEncoder(inputCol="dest_index",outputCol="dest_fact")
 vec_assembler = VectorAssembler(inputCols=["month", "air_time", "carrier_fact", "dest_fact", "plane_age"], outputCol="features")
 ```
 
+```
+# Import Pipeline
+from pyspark.ml import Pipeline
+
+# Make the pipeline
+flights_pipe = Pipeline(stages=[dest_indexer, dest_encoder, carr_indexer, carr_encoder, vec_assembler])
+
+# Fit and transform the data
+piped_data = flights_pipe.fit(model_data).transform(model_data)
+
+# Split the data into training and test sets
+training, test = piped_data.randomSplit([.6, .4])
+
+
+# Import LogisticRegression
+from pyspark.ml.classification import LogisticRegression
+
+# Create a LogisticRegression Estimator
+lr = LogisticRegression()
+```
+
+### Create the evaluator
+
+```
+# Import the evaluation submodule
+import pyspark.ml.evaluation as evals
+
+# Create a BinaryClassificationEvaluator
+evaluator = evals.BinaryClassificationEvaluator(metricName="areaUnderROC")
+```
