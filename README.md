@@ -212,3 +212,17 @@ carr_indexer = StringIndexer(outputCol="carrier_index",inputCol="carrier")
 # Create a OneHotEncoder
 carr_encoder = OneHotEncoder(outputCol="carrier_fact",inputCol="carrier_index")
 ```
+
+```
+# Create a StringIndexer
+dest_indexer = StringIndexer(inputCol="dest",outputCol="dest_index")
+
+# Create a OneHotEncoder
+dest_encoder = OneHotEncoder(inputCol="dest_index",outputCol="dest_fact")
+```
+
+```
+# Make a VectorAssembler
+vec_assembler = VectorAssembler(inputCols=["month", "air_time", "carrier_fact", "dest_fact", "plane_age"], outputCol="features")
+```
+
