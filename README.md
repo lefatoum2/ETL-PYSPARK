@@ -48,23 +48,23 @@ df.printSchema()
 ```
 
 Create pd_temp
-```
+```py
 pd_temp = pd.DataFrame(np.random.random(10))
 ```
 Create spark_temp from pd_temp
-```
+```py
 spark_temp = spark.createDataFrame(pd_temp)
 ```
 Examine the tables in the catalog
-```
+```py
 print(spark.catalog.listTables())
 ```
 Add spark_temp to the catalog
-```
+```py
 spark_temp.createOrReplaceTempView("temp")
 ```
 Examine the tables in the catalog again
-```
+```py
 print(spark.catalog.listTables())
 ```
 ### Example
