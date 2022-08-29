@@ -213,7 +213,7 @@ carr_indexer = StringIndexer(outputCol="carrier_index",inputCol="carrier")
 carr_encoder = OneHotEncoder(outputCol="carrier_fact",inputCol="carrier_index")
 ```
 
-```
+```py
 # Create a StringIndexer
 dest_indexer = StringIndexer(inputCol="dest",outputCol="dest_index")
 
@@ -344,7 +344,7 @@ numb = range(1,101)
 spark_data = sc.parallelize(numb)
 ```
 
-```
+```py
 # Load a local file into PySpark shell
 lines = sc.textFile(file_path)
 ```
