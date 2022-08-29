@@ -90,7 +90,7 @@ flights = flights.withColumn("duration_hrs", flights.air_time/60)
 ```
 ### Filter 
 
-```
+```py
 # Filter flights by passing a string
 long_flights1 = flights.filter("distance > 1000")
 
@@ -102,7 +102,7 @@ long_flights1.show()
 long_flights2.show()
 ```
 ### Filter Select 
-```
+```py
 # Select the first set of columns
 selected1 = flights.select("tailnum", "origin", "dest")
 
@@ -121,7 +121,7 @@ selected2 = temp.filter(filterA).filter(filterB)
 
 ### Alias Select
 
-```
+```py
 # Define avg_speed
 avg_speed = (flights.distance/(flights.air_time/60)).alias("avg_speed")
 
@@ -134,7 +134,7 @@ speed2 = flights.selectExpr("origin", "dest", "tailnum", "distance/(air_time/60)
 
 ### Filter GroupBy 
 
-```
+```py
 # Find the shortest flight from PDX in terms of distance
 flights.filter(flights.origin == "PDX").groupBy().min("distance").show()
 
@@ -144,7 +144,7 @@ flights.filter(flights.origin == "SEA").groupBy().max("air_time").show()
 
 ### Count
 
-```
+```py
 # Group by tailnum
 by_plane = flights.groupBy("tailnum")
 
@@ -160,7 +160,7 @@ by_origin.avg("air_time").show()
 
 ### F.stddev
 
-```
+```py
 # Import pyspark.sql.functions as F
 import pyspark.sql.functions as F
 
@@ -176,7 +176,7 @@ by_month_dest.agg(F.stddev("dep_delay")).show()
 
 ### Join
 
-```
+```py
 # Examine the data
 airports.show()
 
@@ -193,7 +193,7 @@ flights_with_airports.show()
 
 ### Convert
 
-```
+```py
 # Create is_late
 model_data = model_data.withColumn("is_late", model_data.arr_delay > 0)
 
@@ -205,7 +205,7 @@ model_data = model_data.filter("arr_delay is not NULL and dep_delay is not NULL 
 
 ```
 
-```
+```py
 # Create a StringIndexer
 carr_indexer = StringIndexer(outputCol="carrier_index",inputCol="carrier")
 
@@ -221,14 +221,14 @@ dest_indexer = StringIndexer(inputCol="dest",outputCol="dest_index")
 dest_encoder = OneHotEncoder(inputCol="dest_index",outputCol="dest_fact")
 ```
 
-```
+```py
 # Make a VectorAssembler
 vec_assembler = VectorAssembler(inputCols=["month", "air_time", "carrier_fact", "dest_fact", "plane_age"], outputCol="features")
 ```
 
 ## Create the pipeline
 
-```
+```py
 # Import Pipeline
 from pyspark.ml import Pipeline
 
@@ -238,20 +238,20 @@ flights_pipe = Pipeline(stages=[dest_indexer, dest_encoder, carr_indexer, carr_e
 
 ## Transform the data
 
-```
+```py
 # Fit and transform the data
 piped_data = flights_pipe.fit(model_data).transform(model_data)
 ```
 
 ## Split the data
 
-```
+```py
 # Split the data into training and test sets
 training, test = piped_data.randomSplit([.6, .4])
 ```
 
 ## Create the modeler
-```
+```py
 # Import LogisticRegression
 from pyspark.ml.classification import LogisticRegression
 
@@ -262,7 +262,7 @@ lr = LogisticRegression()
 
 ### Create the evaluator
 
-```
+```py
 # Import the evaluation submodule
 import pyspark.ml.evaluation as evals
 
@@ -272,7 +272,7 @@ evaluator = evals.BinaryClassificationEvaluator(metricName="areaUnderROC")
 
 ### Make a grid
 
-```
+```py
 # Import the tuning submodule
 import pyspark.ml.tuning as tune
 
@@ -289,7 +289,7 @@ grid = grid.build()
 
 ### Make the validator
 
-```
+```py
 # Create the CrossValidator
 cv = tune.CrossValidator(estimator=lr,
                estimatorParamMaps=grid,
@@ -299,7 +299,7 @@ cv = tune.CrossValidator(estimator=lr,
 
 ### Fit the model(s)
 
-```
+```py
 # Fit cross validation models
 models = cv.fit(training)
 
@@ -317,7 +317,7 @@ print(best_lr)
 
 ### Evaluate the model
 
-```
+```py
 # Use the model to predict the test set
 test_results = best_lr.transform(test)
 
