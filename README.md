@@ -324,3 +324,14 @@ test_results = best_lr.transform(test)
 # Evaluate the predictions
 print(evaluator.evaluate(test_results))
 ```
+
+```py
+# Print the version of SparkContext
+print("The version of Spark Context in the PySpark shell is", sc.version)
+
+# Print the Python version of SparkContext
+print("The Python version of Spark Context in the PySpark shell is", sc.pythonVer)
+
+# Print the master of SparkContext
+print("The master of Spark Context in the PySpark shell is", sc.master)
+```
