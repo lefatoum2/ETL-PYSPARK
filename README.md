@@ -69,7 +69,7 @@ print(spark.catalog.listTables())
 ```
 ### Example
 
-```
+```py
 # Don't change this file path
 file_path = "/usr/local/share/datasets/players.csv"
 
