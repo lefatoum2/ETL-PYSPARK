@@ -343,3 +343,8 @@ numb = range(1,101)
 # Load the list into PySpark  
 spark_data = sc.parallelize(numb)
 ```
+
+```
+# Load a local file into PySpark shell
+lines = sc.textFile(file_path)
+```
