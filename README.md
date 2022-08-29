@@ -348,3 +348,14 @@ spark_data = sc.parallelize(numb)
 # Load a local file into PySpark shell
 lines = sc.textFile(file_path)
 ```
+
+```py
+# Print my_list in the console
+print("Input list is", my_list)
+
+# Square all numbers in my_list
+squared_list_lambda = list(map(lambda x: x*x, my_list))
+
+# Print the result of the map function
+print("The squared numbers are", squared_list_lambda)
+```
