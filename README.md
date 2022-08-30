@@ -361,7 +361,7 @@ print("The squared numbers are", squared_list_lambda)
 ```
 
 
-```
+```py
 # Print my_list2 in the console
 print("Input list is:", my_list2)
 
