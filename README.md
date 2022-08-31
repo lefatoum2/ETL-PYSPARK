@@ -371,3 +371,13 @@ filtered_list = list(filter(lambda x: (x%10 == 0), my_list2))
 # Print the numbers divisible by 10
 print("Numbers divisible by 10 are:", filtered_list)
 ```
+
+## PySpark RDD
+
+```
+# Create an RDD from a list of words
+RDD = sc.parallelize(["Spark", "is", "a", "framework", "for", "Big Data processing"])
+
+# Print out the type of the created object
+print("The type of RDD is", type(RDD))
+```
