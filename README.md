@@ -399,3 +399,36 @@ fileRDD_part = sc.textFile(file_path, minPartitions = 5)
 # Check the number of partitions in fileRDD_part
 print("Number of partitions in fileRDD_part is", fileRDD_part.getNumPartitions())
 ```
+# 
+
+```py
+# Read the file into a dataframe
+df = spark.read.parquet("Real_Estate.parq")
+# Print columns in dataframe
+print(df.columns)
+```
+
+```py
+# Select our dependent variable
+Y_df = df.select(['DAYSONMARKET'])
+
+# Display summary statistics
+Y_df.describe().show()
+```
+
+```py
+def check_load(df, num_records, num_columns):
+  # Takes a dataframe and compares record and column counts to input
+  # Message to return if the critera below aren't met
+  message = 'Validation Failed'
+  # Check number of records
+  if num_records == df.count():
+    # Check number of columns
+    if num_columns == len(df.columns):
+      # Success message
+      message = 'Validation Passed'
+  return message
+
+# Print the data validation message
+print(check_load(df, 5000, 74))
+```
